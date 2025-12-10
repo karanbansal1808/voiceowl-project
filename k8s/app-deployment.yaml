@@ -27,69 +27,69 @@ spec:
         seccompProfile:
           type: RuntimeDefault
       containers:
-      - name: app
-        image: devsecops-nodejs-app:latest
-        imagePullPolicy: IfNotPresent
-        securityContext:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          runAsNonRoot: true
-          runAsUser: 1001
-          capabilities:
-            drop:
-              - ALL
-        ports:
-        - containerPort: 3000
-          name: http
-          protocol: TCP
-        env:
-        - name: PORT
-          value: "3000"
-        - name: MONGODB_URI
-          value: "mongodb://devsecops:changeme123@mongodb:27017/devsecops?authSource=admin"
-        - name: NODE_ENV
-          value: "production"
-        volumeMounts:
-        - name: tmp
-          mountPath: /tmp
-        resources:
-          requests:
-            memory: "256Mi"
-            cpu: "100m"
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 3000
-          initialDelaySeconds: 30
-          periodSeconds: 10
-          timeoutSeconds: 5
-          failureThreshold: 3
-        readinessProbe:
-          httpGet:
-            path: /health/ready
-            port: 3000
-          initialDelaySeconds: 5
-          periodSeconds: 5
-          timeoutSeconds: 3
-          failureThreshold: 3
+        - name: app
+          image: vo-nodejs-app:latest
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 1001
+            capabilities:
+              drop:
+                - ALL
+          ports:
+            - containerPort: 3000
+              name: http
+              protocol: TCP
+          env:
+            - name: PORT
+              value: "3000"
+            - name: MONGODB_URI
+              value: "mongodb://devsecops:changeme123@mongodb:27017/devsecops?authSource=admin"
+            - name: NODE_ENV
+              value: "production"
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
       volumes:
-      - name: tmp
-        emptyDir: {}
+        - name: tmp
+          emptyDir: {}
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                - key: app
-                  operator: In
-                  values:
-                  - devsecops-app
-              topologyKey: kubernetes.io/hostname
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - devsecops-app
+                topologyKey: kubernetes.io/hostname
 ---
 apiVersion: v1
 kind: Service
@@ -101,10 +101,10 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - port: 80
-    targetPort: 3000
-    protocol: TCP
-    name: http
+    - port: 80
+      targetPort: 3000
+      protocol: TCP
+      name: http
   selector:
     app: devsecops-app
 ---
@@ -120,18 +120,17 @@ metadata:
     nginx.ingress.kubernetes.io/rate-limit: "100"
 spec:
   tls:
-  - hosts:
-    - devsecops.example.com
-    secretName: devsecops-tls
+    - hosts:
+        - devsecops.example.com
+      secretName: devsecops-tls
   rules:
-  - host: devsecops.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: devsecops-app
-            port:
-              number: 80
-
+    - host: devsecops.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: devsecops-app
+                port:
+                  number: 80
