@@ -54,7 +54,6 @@ data:
           - source_labels: [__meta_kubernetes_pod_ip]
             action: replace
             target_label: __address__
-            replacement: $1:3000
+            replacement: $0:3000
           - action: labelmap
             regex: __meta_kubernetes_pod_label_(.+)
-

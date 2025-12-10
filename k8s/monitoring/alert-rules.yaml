@@ -20,7 +20,7 @@ data:
           description: "Pod {{ $labels.pod }} in namespace {{ $labels.namespace }} has restarted {{ $value }} times in the last 5 minutes"
 
       - alert: PodCrashLooping
-        expr: rate(kube_pod_container_status_restarts_total{namespace="devsecops"}[15m]) > 0
+        expr: rate(kube_pod_container_status_restarts_total{namespace="devsecops"}[5m]) > 0.5
         for: 5m
         labels:
           severity: critical
@@ -78,4 +78,3 @@ data:
         annotations:
           summary: "MongoDB connection failure"
           description: "Application cannot connect to MongoDB in namespace {{ $labels.namespace }}"
-

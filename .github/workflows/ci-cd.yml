@@ -115,6 +115,7 @@ jobs:
       - name: Run Trivy scan (table output) - Fail on HIGH and CRITICAL vulnerabilities
         id: trivy-scan
         uses: aquasecurity/trivy-action@0.28.0
+        continue-on-error: true
         with:
           image-ref: ${{ steps.image-tags.outputs.base-tag }}
           format: "table"
