@@ -1,0 +1,1619 @@
+{
+    "check_type": "terraform",
+    "results": {
+        "passed_checks": [
+            {
+                "check_id": "CKV_AWS_23",
+                "bc_check_id": "BC_AWS_NETWORKING_31",
+                "check_name": "Ensure every security group and rule has a description",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "description"
+                    ]
+                },
+                "code_block": [
+                    [
+                        214,
+                        "resource \"aws_security_group\" \"eks_cluster_sg\" {\n"
+                    ],
+                    [
+                        215,
+                        "  name        = \"${var.project_name}-eks-cluster-sg\"\n"
+                    ],
+                    [
+                        216,
+                        "  description = \"Security group for EKS cluster control plane\"\n"
+                    ],
+                    [
+                        217,
+                        "  vpc_id      = aws_vpc.eks_vpc.id\n"
+                    ],
+                    [
+                        218,
+                        "\n"
+                    ],
+                    [
+                        219,
+                        "  ingress {\n"
+                    ],
+                    [
+                        220,
+                        "    description = \"HTTPS from VPC\"\n"
+                    ],
+                    [
+                        221,
+                        "    from_port   = 443\n"
+                    ],
+                    [
+                        222,
+                        "    to_port     = 443\n"
+                    ],
+                    [
+                        223,
+                        "    protocol    = \"tcp\"\n"
+                    ],
+                    [
+                        224,
+                        "    cidr_blocks = [var.vpc_cidr]\n"
+                    ],
+                    [
+                        225,
+                        "  }\n"
+                    ],
+                    [
+                        226,
+                        "\n"
+                    ],
+                    [
+                        227,
+                        "  egress {\n"
+                    ],
+                    [
+                        228,
+                        "    description = \"Allow all outbound traffic\"\n"
+                    ],
+                    [
+                        229,
+                        "    from_port   = 0\n"
+                    ],
+                    [
+                        230,
+                        "    to_port     = 0\n"
+                    ],
+                    [
+                        231,
+                        "    protocol    = \"-1\"\n"
+                    ],
+                    [
+                        232,
+                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
+                    ],
+                    [
+                        233,
+                        "  }\n"
+                    ],
+                    [
+                        234,
+                        "\n"
+                    ],
+                    [
+                        235,
+                        "  tags = {\n"
+                    ],
+                    [
+                        236,
+                        "    Name        = \"${var.project_name}-eks-cluster-sg\"\n"
+                    ],
+                    [
+                        237,
+                        "    Environment = var.environment\n"
+                    ],
+                    [
+                        238,
+                        "  }\n"
+                    ],
+                    [
+                        239,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                "repo_file_path": "/terraform/main.tf",
+                "file_line_range": [
+                    214,
+                    239
+                ],
+                "resource": "aws_security_group.eks_cluster_sg",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SecurityGroupRuleDescription",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Environment": "production",
+                    "Name": "devsecops-eks-cluster-sg"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                "breadcrumbs": {
+                    "tags.Name": [
+                        {
+                            "type": "tfvar",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_cluster_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_eks_cluster.eks_cluster",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "ingress.cidr_blocks.0": [
+                        {
+                            "type": "tfvar",
+                            "name": "vpc_cidr",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc_cidr",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "ingress.cidr_blocks": [
+                        {
+                            "type": "tfvar",
+                            "name": "vpc_cidr",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc_cidr",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags.Environment": [
+                        {
+                            "type": "tfvar",
+                            "name": "environment",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "environment",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "name": [
+                        {
+                            "type": "tfvar",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_cluster_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_eks_cluster.eks_cluster",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_24",
+                "bc_check_id": "BC_AWS_NETWORKING_1",
+                "check_name": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": []
+                },
+                "code_block": [
+                    [
+                        214,
+                        "resource \"aws_security_group\" \"eks_cluster_sg\" {\n"
+                    ],
+                    [
+                        215,
+                        "  name        = \"${var.project_name}-eks-cluster-sg\"\n"
+                    ],
+                    [
+                        216,
+                        "  description = \"Security group for EKS cluster control plane\"\n"
+                    ],
+                    [
+                        217,
+                        "  vpc_id      = aws_vpc.eks_vpc.id\n"
+                    ],
+                    [
+                        218,
+                        "\n"
+                    ],
+                    [
+                        219,
+                        "  ingress {\n"
+                    ],
+                    [
+                        220,
+                        "    description = \"HTTPS from VPC\"\n"
+                    ],
+                    [
+                        221,
+                        "    from_port   = 443\n"
+                    ],
+                    [
+                        222,
+                        "    to_port     = 443\n"
+                    ],
+                    [
+                        223,
+                        "    protocol    = \"tcp\"\n"
+                    ],
+                    [
+                        224,
+                        "    cidr_blocks = [var.vpc_cidr]\n"
+                    ],
+                    [
+                        225,
+                        "  }\n"
+                    ],
+                    [
+                        226,
+                        "\n"
+                    ],
+                    [
+                        227,
+                        "  egress {\n"
+                    ],
+                    [
+                        228,
+                        "    description = \"Allow all outbound traffic\"\n"
+                    ],
+                    [
+                        229,
+                        "    from_port   = 0\n"
+                    ],
+                    [
+                        230,
+                        "    to_port     = 0\n"
+                    ],
+                    [
+                        231,
+                        "    protocol    = \"-1\"\n"
+                    ],
+                    [
+                        232,
+                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
+                    ],
+                    [
+                        233,
+                        "  }\n"
+                    ],
+                    [
+                        234,
+                        "\n"
+                    ],
+                    [
+                        235,
+                        "  tags = {\n"
+                    ],
+                    [
+                        236,
+                        "    Name        = \"${var.project_name}-eks-cluster-sg\"\n"
+                    ],
+                    [
+                        237,
+                        "    Environment = var.environment\n"
+                    ],
+                    [
+                        238,
+                        "  }\n"
+                    ],
+                    [
+                        239,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                "repo_file_path": "/terraform/main.tf",
+                "file_line_range": [
+                    214,
+                    239
+                ],
+                "resource": "aws_security_group.eks_cluster_sg",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SecurityGroupUnrestrictedIngress22",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Environment": "production",
+                    "Name": "devsecops-eks-cluster-sg"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                "breadcrumbs": {
+                    "tags.Name": [
+                        {
+                            "type": "tfvar",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_cluster_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_eks_cluster.eks_cluster",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "ingress.cidr_blocks.0": [
+                        {
+                            "type": "tfvar",
+                            "name": "vpc_cidr",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc_cidr",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "ingress.cidr_blocks": [
+                        {
+                            "type": "tfvar",
+                            "name": "vpc_cidr",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc_cidr",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags.Environment": [
+                        {
+                            "type": "tfvar",
+                            "name": "environment",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "environment",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "name": [
+                        {
+                            "type": "tfvar",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_cluster_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_eks_cluster.eks_cluster",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_25",
+                "bc_check_id": "BC_AWS_NETWORKING_2",
+                "check_name": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": []
+                },
+                "code_block": [
+                    [
+                        214,
+                        "resource \"aws_security_group\" \"eks_cluster_sg\" {\n"
+                    ],
+                    [
+                        215,
+                        "  name        = \"${var.project_name}-eks-cluster-sg\"\n"
+                    ],
+                    [
+                        216,
+                        "  description = \"Security group for EKS cluster control plane\"\n"
+                    ],
+                    [
+                        217,
+                        "  vpc_id      = aws_vpc.eks_vpc.id\n"
+                    ],
+                    [
+                        218,
+                        "\n"
+                    ],
+                    [
+                        219,
+                        "  ingress {\n"
+                    ],
+                    [
+                        220,
+                        "    description = \"HTTPS from VPC\"\n"
+                    ],
+                    [
+                        221,
+                        "    from_port   = 443\n"
+                    ],
+                    [
+                        222,
+                        "    to_port     = 443\n"
+                    ],
+                    [
+                        223,
+                        "    protocol    = \"tcp\"\n"
+                    ],
+                    [
+                        224,
+                        "    cidr_blocks = [var.vpc_cidr]\n"
+                    ],
+                    [
+                        225,
+                        "  }\n"
+                    ],
+                    [
+                        226,
+                        "\n"
+                    ],
+                    [
+                        227,
+                        "  egress {\n"
+                    ],
+                    [
+                        228,
+                        "    description = \"Allow all outbound traffic\"\n"
+                    ],
+                    [
+                        229,
+                        "    from_port   = 0\n"
+                    ],
+                    [
+                        230,
+                        "    to_port     = 0\n"
+                    ],
+                    [
+                        231,
+                        "    protocol    = \"-1\"\n"
+                    ],
+                    [
+                        232,
+                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
+                    ],
+                    [
+                        233,
+                        "  }\n"
+                    ],
+                    [
+                        234,
+                        "\n"
+                    ],
+                    [
+                        235,
+                        "  tags = {\n"
+                    ],
+                    [
+                        236,
+                        "    Name        = \"${var.project_name}-eks-cluster-sg\"\n"
+                    ],
+                    [
+                        237,
+                        "    Environment = var.environment\n"
+                    ],
+                    [
+                        238,
+                        "  }\n"
+                    ],
+                    [
+                        239,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                "repo_file_path": "/terraform/main.tf",
+                "file_line_range": [
+                    214,
+                    239
+                ],
+                "resource": "aws_security_group.eks_cluster_sg",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SecurityGroupUnrestrictedIngress3389",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Environment": "production",
+                    "Name": "devsecops-eks-cluster-sg"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                "breadcrumbs": {
+                    "tags.Name": [
+                        {
+                            "type": "tfvar",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_cluster_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_eks_cluster.eks_cluster",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "ingress.cidr_blocks.0": [
+                        {
+                            "type": "tfvar",
+                            "name": "vpc_cidr",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc_cidr",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "ingress.cidr_blocks": [
+                        {
+                            "type": "tfvar",
+                            "name": "vpc_cidr",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "vpc_cidr",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags.Environment": [
+                        {
+                            "type": "tfvar",
+                            "name": "environment",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "environment",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "name": [
+                        {
+                            "type": "tfvar",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_cluster_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_eks_cluster.eks_cluster",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_23",
+                "bc_check_id": "BC_AWS_NETWORKING_31",
+                "check_name": "Ensure every security group and rule has a description",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": [
+                        "description"
+                    ]
+                },
+                "code_block": [
+                    [
+                        241,
+                        "resource \"aws_security_group\" \"eks_nodes_sg\" {\n"
+                    ],
+                    [
+                        242,
+                        "  name        = \"${var.project_name}-eks-nodes-sg\"\n"
+                    ],
+                    [
+                        243,
+                        "  description = \"Security group for EKS worker nodes\"\n"
+                    ],
+                    [
+                        244,
+                        "  vpc_id      = aws_vpc.eks_vpc.id\n"
+                    ],
+                    [
+                        245,
+                        "\n"
+                    ],
+                    [
+                        246,
+                        "  ingress {\n"
+                    ],
+                    [
+                        247,
+                        "    description     = \"Allow nodes to communicate with each other\"\n"
+                    ],
+                    [
+                        248,
+                        "    from_port       = 0\n"
+                    ],
+                    [
+                        249,
+                        "    to_port         = 65535\n"
+                    ],
+                    [
+                        250,
+                        "    protocol        = \"tcp\"\n"
+                    ],
+                    [
+                        251,
+                        "    security_groups = [aws_security_group.eks_cluster_sg.id]\n"
+                    ],
+                    [
+                        252,
+                        "  }\n"
+                    ],
+                    [
+                        253,
+                        "\n"
+                    ],
+                    [
+                        254,
+                        "  ingress {\n"
+                    ],
+                    [
+                        255,
+                        "    description     = \"Allow pods to communicate with cluster API\"\n"
+                    ],
+                    [
+                        256,
+                        "    from_port       = 443\n"
+                    ],
+                    [
+                        257,
+                        "    to_port         = 443\n"
+                    ],
+                    [
+                        258,
+                        "    protocol        = \"tcp\"\n"
+                    ],
+                    [
+                        259,
+                        "    security_groups = [aws_security_group.eks_cluster_sg.id]\n"
+                    ],
+                    [
+                        260,
+                        "  }\n"
+                    ],
+                    [
+                        261,
+                        "\n"
+                    ],
+                    [
+                        262,
+                        "  egress {\n"
+                    ],
+                    [
+                        263,
+                        "    description = \"Allow all outbound traffic\"\n"
+                    ],
+                    [
+                        264,
+                        "    from_port   = 0\n"
+                    ],
+                    [
+                        265,
+                        "    to_port     = 0\n"
+                    ],
+                    [
+                        266,
+                        "    protocol    = \"-1\"\n"
+                    ],
+                    [
+                        267,
+                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
+                    ],
+                    [
+                        268,
+                        "  }\n"
+                    ],
+                    [
+                        269,
+                        "\n"
+                    ],
+                    [
+                        270,
+                        "  tags = {\n"
+                    ],
+                    [
+                        271,
+                        "    Name        = \"${var.project_name}-eks-nodes-sg\"\n"
+                    ],
+                    [
+                        272,
+                        "    Environment = var.environment\n"
+                    ],
+                    [
+                        273,
+                        "  }\n"
+                    ],
+                    [
+                        274,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                "repo_file_path": "/terraform/main.tf",
+                "file_line_range": [
+                    241,
+                    274
+                ],
+                "resource": "aws_security_group.eks_nodes_sg",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SecurityGroupRuleDescription",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Environment": "production",
+                    "Name": "devsecops-eks-nodes-sg"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-31",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                "breadcrumbs": {
+                    "tags.Environment": [
+                        {
+                            "type": "tfvar",
+                            "name": "environment",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "environment",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "name": [
+                        {
+                            "type": "tfvar",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_cluster_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_eks_cluster.eks_cluster",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags.Name": [
+                        {
+                            "type": "tfvar",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_cluster_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_eks_cluster.eks_cluster",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_24",
+                "bc_check_id": "BC_AWS_NETWORKING_1",
+                "check_name": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 22",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": []
+                },
+                "code_block": [
+                    [
+                        241,
+                        "resource \"aws_security_group\" \"eks_nodes_sg\" {\n"
+                    ],
+                    [
+                        242,
+                        "  name        = \"${var.project_name}-eks-nodes-sg\"\n"
+                    ],
+                    [
+                        243,
+                        "  description = \"Security group for EKS worker nodes\"\n"
+                    ],
+                    [
+                        244,
+                        "  vpc_id      = aws_vpc.eks_vpc.id\n"
+                    ],
+                    [
+                        245,
+                        "\n"
+                    ],
+                    [
+                        246,
+                        "  ingress {\n"
+                    ],
+                    [
+                        247,
+                        "    description     = \"Allow nodes to communicate with each other\"\n"
+                    ],
+                    [
+                        248,
+                        "    from_port       = 0\n"
+                    ],
+                    [
+                        249,
+                        "    to_port         = 65535\n"
+                    ],
+                    [
+                        250,
+                        "    protocol        = \"tcp\"\n"
+                    ],
+                    [
+                        251,
+                        "    security_groups = [aws_security_group.eks_cluster_sg.id]\n"
+                    ],
+                    [
+                        252,
+                        "  }\n"
+                    ],
+                    [
+                        253,
+                        "\n"
+                    ],
+                    [
+                        254,
+                        "  ingress {\n"
+                    ],
+                    [
+                        255,
+                        "    description     = \"Allow pods to communicate with cluster API\"\n"
+                    ],
+                    [
+                        256,
+                        "    from_port       = 443\n"
+                    ],
+                    [
+                        257,
+                        "    to_port         = 443\n"
+                    ],
+                    [
+                        258,
+                        "    protocol        = \"tcp\"\n"
+                    ],
+                    [
+                        259,
+                        "    security_groups = [aws_security_group.eks_cluster_sg.id]\n"
+                    ],
+                    [
+                        260,
+                        "  }\n"
+                    ],
+                    [
+                        261,
+                        "\n"
+                    ],
+                    [
+                        262,
+                        "  egress {\n"
+                    ],
+                    [
+                        263,
+                        "    description = \"Allow all outbound traffic\"\n"
+                    ],
+                    [
+                        264,
+                        "    from_port   = 0\n"
+                    ],
+                    [
+                        265,
+                        "    to_port     = 0\n"
+                    ],
+                    [
+                        266,
+                        "    protocol    = \"-1\"\n"
+                    ],
+                    [
+                        267,
+                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
+                    ],
+                    [
+                        268,
+                        "  }\n"
+                    ],
+                    [
+                        269,
+                        "\n"
+                    ],
+                    [
+                        270,
+                        "  tags = {\n"
+                    ],
+                    [
+                        271,
+                        "    Name        = \"${var.project_name}-eks-nodes-sg\"\n"
+                    ],
+                    [
+                        272,
+                        "    Environment = var.environment\n"
+                    ],
+                    [
+                        273,
+                        "  }\n"
+                    ],
+                    [
+                        274,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                "repo_file_path": "/terraform/main.tf",
+                "file_line_range": [
+                    241,
+                    274
+                ],
+                "resource": "aws_security_group.eks_nodes_sg",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SecurityGroupUnrestrictedIngress22",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Environment": "production",
+                    "Name": "devsecops-eks-nodes-sg"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-1-port-security",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                "breadcrumbs": {
+                    "tags.Environment": [
+                        {
+                            "type": "tfvar",
+                            "name": "environment",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "environment",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "name": [
+                        {
+                            "type": "tfvar",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_cluster_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_eks_cluster.eks_cluster",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags.Name": [
+                        {
+                            "type": "tfvar",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_cluster_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_eks_cluster.eks_cluster",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            },
+            {
+                "check_id": "CKV_AWS_25",
+                "bc_check_id": "BC_AWS_NETWORKING_2",
+                "check_name": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 3389",
+                "check_result": {
+                    "result": "PASSED",
+                    "evaluated_keys": []
+                },
+                "code_block": [
+                    [
+                        241,
+                        "resource \"aws_security_group\" \"eks_nodes_sg\" {\n"
+                    ],
+                    [
+                        242,
+                        "  name        = \"${var.project_name}-eks-nodes-sg\"\n"
+                    ],
+                    [
+                        243,
+                        "  description = \"Security group for EKS worker nodes\"\n"
+                    ],
+                    [
+                        244,
+                        "  vpc_id      = aws_vpc.eks_vpc.id\n"
+                    ],
+                    [
+                        245,
+                        "\n"
+                    ],
+                    [
+                        246,
+                        "  ingress {\n"
+                    ],
+                    [
+                        247,
+                        "    description     = \"Allow nodes to communicate with each other\"\n"
+                    ],
+                    [
+                        248,
+                        "    from_port       = 0\n"
+                    ],
+                    [
+                        249,
+                        "    to_port         = 65535\n"
+                    ],
+                    [
+                        250,
+                        "    protocol        = \"tcp\"\n"
+                    ],
+                    [
+                        251,
+                        "    security_groups = [aws_security_group.eks_cluster_sg.id]\n"
+                    ],
+                    [
+                        252,
+                        "  }\n"
+                    ],
+                    [
+                        253,
+                        "\n"
+                    ],
+                    [
+                        254,
+                        "  ingress {\n"
+                    ],
+                    [
+                        255,
+                        "    description     = \"Allow pods to communicate with cluster API\"\n"
+                    ],
+                    [
+                        256,
+                        "    from_port       = 443\n"
+                    ],
+                    [
+                        257,
+                        "    to_port         = 443\n"
+                    ],
+                    [
+                        258,
+                        "    protocol        = \"tcp\"\n"
+                    ],
+                    [
+                        259,
+                        "    security_groups = [aws_security_group.eks_cluster_sg.id]\n"
+                    ],
+                    [
+                        260,
+                        "  }\n"
+                    ],
+                    [
+                        261,
+                        "\n"
+                    ],
+                    [
+                        262,
+                        "  egress {\n"
+                    ],
+                    [
+                        263,
+                        "    description = \"Allow all outbound traffic\"\n"
+                    ],
+                    [
+                        264,
+                        "    from_port   = 0\n"
+                    ],
+                    [
+                        265,
+                        "    to_port     = 0\n"
+                    ],
+                    [
+                        266,
+                        "    protocol    = \"-1\"\n"
+                    ],
+                    [
+                        267,
+                        "    cidr_blocks = [\"0.0.0.0/0\"]\n"
+                    ],
+                    [
+                        268,
+                        "  }\n"
+                    ],
+                    [
+                        269,
+                        "\n"
+                    ],
+                    [
+                        270,
+                        "  tags = {\n"
+                    ],
+                    [
+                        271,
+                        "    Name        = \"${var.project_name}-eks-nodes-sg\"\n"
+                    ],
+                    [
+                        272,
+                        "    Environment = var.environment\n"
+                    ],
+                    [
+                        273,
+                        "  }\n"
+                    ],
+                    [
+                        274,
+                        "}\n"
+                    ]
+                ],
+                "file_path": "/main.tf",
+                "file_abs_path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                "repo_file_path": "/terraform/main.tf",
+                "file_line_range": [
+                    241,
+                    274
+                ],
+                "resource": "aws_security_group.eks_nodes_sg",
+                "evaluations": null,
+                "check_class": "checkov.terraform.checks.resource.aws.SecurityGroupUnrestrictedIngress3389",
+                "fixed_definition": null,
+                "entity_tags": {
+                    "Environment": "production",
+                    "Name": "devsecops-eks-nodes-sg"
+                },
+                "caller_file_path": null,
+                "caller_file_line_range": null,
+                "resource_address": null,
+                "severity": null,
+                "bc_category": null,
+                "benchmarks": null,
+                "description": null,
+                "short_description": null,
+                "vulnerability_details": null,
+                "connected_node": null,
+                "guideline": "https://docs.prismacloud.io/en/enterprise-edition/policy-reference/aws-policies/aws-networking-policies/networking-2",
+                "details": [],
+                "check_len": null,
+                "definition_context_file_path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                "breadcrumbs": {
+                    "tags.Environment": [
+                        {
+                            "type": "tfvar",
+                            "name": "environment",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "environment",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "name": [
+                        {
+                            "type": "tfvar",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_cluster_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_eks_cluster.eks_cluster",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        }
+                    ],
+                    "tags.Name": [
+                        {
+                            "type": "tfvar",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/terraform.tfvars",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "variable",
+                            "name": "project_name",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/variables.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_cluster_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_iam_role.eks_node_group_role",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        },
+                        {
+                            "type": "resource",
+                            "name": "aws_eks_cluster.eks_cluster",
+                            "path": "/home/karan.bansal@seclore.com/voiceowl-devsecops-project/terraform/main.tf",
+                            "module_connection": false
+                        }
+                    ]
+                }
+            }
+        ],
+        "failed_checks": [],
+        "skipped_checks": [],
+        "parsing_errors": []
+    },
+    "summary": {
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0,
+        "parsing_errors": 0,
+        "resource_count": 27,
+        "checkov_version": "3.2.495"
+    },
+    "url": "Add an api key '--bc-api-key <api-key>' to see more detailed insights via https://bridgecrew.cloud"
+}

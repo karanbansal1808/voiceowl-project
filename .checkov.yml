@@ -1,0 +1,68 @@
+framework:
+  - terraform
+  - kubernetes
+
+check:
+  - CKV_AWS_1
+  - CKV_AWS_2
+  - CKV_AWS_3
+  - CKV_AWS_8
+  - CKV_AWS_20
+  - CKV_AWS_21
+  - CKV_AWS_23
+  - CKV_AWS_24
+  - CKV_AWS_25
+  - CKV_AWS_34
+  - CKV_AWS_79
+  - CKV_K8S_1
+  - CKV_K8S_2
+  - CKV_K8S_3
+  - CKV_K8S_4
+  - CKV_K8S_5
+  - CKV_K8S_6
+  - CKV_K8S_7
+  - CKV_K8S_8
+  - CKV_K8S_9
+  - CKV_K8S_10
+  - CKV_K8S_11
+  - CKV_K8S_12
+  - CKV_K8S_13
+  - CKV_K8S_14
+  - CKV_K8S_15
+  - CKV_K8S_16
+  - CKV_K8S_17
+  - CKV_K8S_18
+  - CKV_K8S_19
+  - CKV_K8S_20
+  - CKV_K8S_21
+  - CKV_K8S_22
+  - CKV_K8S_23
+  - CKV_K8S_24
+  - CKV_K8S_25
+  - CKV_K8S_26
+  - CKV_K8S_27
+  - CKV_K8S_28
+  - CKV_K8S_29
+  - CKV_K8S_30
+  - CKV_K8S_31
+  - CKV_K8S_32
+  - CKV_K8S_33
+  - CKV_K8S_34
+  - CKV_K8S_35
+  - CKV_K8S_36
+  - CKV_K8S_37
+  - CKV_K8S_38
+  - CKV_K8S_39
+  - CKV_K8S_40
+  - CKV_K8S_41
+  - CKV_K8S_42
+  - CKV_K8S_43
+  - CKV_K8S_44
+  - CKV_K8S_45
+  - CKV_K8S_46
+  - CKV_K8S_47
+  - CKV_K8S_48
+  - CKV_K8S_49
+
+soft-fail: false
+

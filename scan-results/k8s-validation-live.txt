@@ -1,0 +1,15 @@
+=== Validating Kubernetes Manifests ===
+
+[0;32mValidating all Kubernetes manifests...[0m
+
+Validating k8s/namespace.yaml... [0;32m✓[0m
+Validating k8s/mongodb-deployment.yaml... [0;32m✓[0m
+Validating k8s/app-deployment.yaml... [0;32m✓[0m
+Validating k8s/network-policy.yaml... [0;32m✓[0m
+Validating k8s/pdb.yaml... [0;32m✓[0m
+Validating k8s/hpa.yaml... [0;32m✓[0m
+Validating k8s/monitoring/prometheus-config.yaml... [0;32m✓[0m
+Validating k8s/monitoring/prometheus-deployment.yaml... [0;32m✓[0m
+Validating k8s/monitoring/alert-rules.yaml... [0;32m✓[0m
+
+[0;32m=== Validation Complete ===[0m
