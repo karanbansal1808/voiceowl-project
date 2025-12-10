@@ -1,0 +1,46 @@
+deployment.apps/devsecops-app created (dry run)
+service/devsecops-app created (dry run)
+ingress.networking.k8s.io/devsecops-app-ingress created (dry run)
+horizontalpodautoscaler.autoscaling/devsecops-app-hpa created (dry run)
+secret/mongodb-secret created (dry run)
+persistentvolumeclaim/mongodb-pvc created (dry run)
+deployment.apps/mongodb created (dry run)
+service/mongodb created (dry run)
+namespace/devsecops created (dry run)
+networkpolicy.networking.k8s.io/devsecops-network-policy created (dry run)
+networkpolicy.networking.k8s.io/mongodb-network-policy created (dry run)
+poddisruptionbudget.policy/devsecops-app-pdb created (dry run)
+Validating: k8s/app-deployment.yaml
+deployment.apps/devsecops-app created (dry run)
+service/devsecops-app created (dry run)
+ingress.networking.k8s.io/devsecops-app-ingress created (dry run)
+
+Validating: k8s/hpa.yaml
+horizontalpodautoscaler.autoscaling/devsecops-app-hpa created (dry run)
+
+Validating: k8s/mongodb-deployment.yaml
+secret/mongodb-secret created (dry run)
+persistentvolumeclaim/mongodb-pvc created (dry run)
+deployment.apps/mongodb created (dry run)
+
+Validating: k8s/namespace.yaml
+namespace/devsecops created (dry run)
+
+Validating: k8s/network-policy.yaml
+networkpolicy.networking.k8s.io/devsecops-network-policy created (dry run)
+networkpolicy.networking.k8s.io/mongodb-network-policy created (dry run)
+
+Validating: k8s/pdb.yaml
+poddisruptionbudget.policy/devsecops-app-pdb created (dry run)
+
+Validating: k8s/monitoring/alert-rules.yaml
+configmap/prometheus-alert-rules created (dry run)
+
+Validating: k8s/monitoring/prometheus-config.yaml
+configmap/prometheus-config created (dry run)
+
+Validating: k8s/monitoring/prometheus-deployment.yaml
+namespace/monitoring created (dry run)
+serviceaccount/prometheus created (dry run)
+clusterrole.rbac.authorization.k8s.io/prometheus created (dry run)
+
